@@ -1,0 +1,80 @@
+{%- liquid
+    assign show_image_swap = settings.show_image_swap
+    assign show_mp4_video = settings.show_mp4_video
+    assign show_image_loading = settings.show_image_loading
+    assign featured_media_aspect_ratio = product.featured_media.aspect_ratio
+
+    if product.featured_media.aspect_ratio == nil
+        assign featured_media_aspect_ratio = 1
+    endif
+
+    if show_mp4_video
+        assign has_video = product.media | where: 'media_type', 'video'
+    endif
+
+    assign image_count = product.images.size
+    assign use_slider = false
+    if image_count > 1 and has_video == blank
+        assign use_slider = true
+    endif
+-%}
+<a class="card-media card-media--{{ media_size }}{% if show_image_swap and use_slider == false %} media--hover-effect{% endif %}{% if show_image_loading %} media--loading-effect{% endif %}"
+    href="{{ product.url }}"
+    {% if product.featured_media %}
+        {% if media_size == 'adapt' %}
+            style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"
+        {% elsif media_size == 'square' %}
+            style="padding-bottom: 100%;"
+        {% elsif media_size == 'portrait' %}
+            {% if portrait_aspect_ratio != blank %}
+                style="padding-bottom: {{ portrait_aspect_ratio | append: '%' }};"
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    draggable="false"
+    data-image-adapt="{{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}"
+    {% if use_slider %}data-zae-slider{% endif %}
+>
+    {%- if product.featured_media -%}
+        {%- if use_slider -%}
+            {%- for image in product.images -%}
+                <img {% render 'lazyload', preview_img: image %} class="lazyload"/>
+            {%- endfor -%}
+
+            <button type="button" class="zae-nav zae-nav--prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button type="button" class="zae-nav zae-nav--next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+
+            <div class="zae-dots" aria-hidden="true">
+                {%- for image in product.images -%}
+                    <span class="zae-dot{% if forloop.first %} zae-active{% endif %}"></span>
+                {%- endfor -%}
+            </div>
+        {%- else -%}
+            <img {% render 'lazyload', preview_img: product.featured_media %} class="lazyload"/>
+            {%- if show_image_swap -%}
+                {%- if has_video != blank -%}
+                    {{ has_video[0] | video_tag: muted: true, loop: true, image_size: 'master' }}
+                {%- else -%}
+                    {%- if product.selected_or_first_available_variant.featured_media != null -%}
+                        {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+                        <img {% render 'lazyload', preview_img: featured_media %} class="lazyload"/>
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if show_image_loading -%}
+            {%- if loading -%}
+                <div class="media-loading" data-title="{{ settings.image_loading_text }}">{{ settings.image_loading_text }}</div>
+            {%- endif -%}
+        {%- endif -%}
+    {%- else -%}
+        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+</a>

@@ -1,0 +1,20 @@
+<noscript>{{ 'component-quick-cart.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="halo-popup halo-quick-cart-popup customPopup-large halo-popup-topDown" data-quick-cart-popup id="halo-quick-cart-popup" role="dialog" aria-modal="true" aria-hidden="true" data-url-style-quick-cart="{{ 'component-quick-cart.css' | asset_url }}">
+    <div class="halo-popup-wrapper">
+        <div class="halo-popup-content halo-popup-scroll custom-scrollbar">
+            <div class="button-close">
+                <a href="javascript:void(0)" title="{{ 'general.common.close' | t }}" class="box-close" data-close-cart-popup role="button">
+                    {% render 'icon-close' %}
+                </a>
+            </div>
+            <quick-cart-items data-view="ajax_dropdown_cart" data-section="Dropdown" data-add-class="false" data-empty-cart="false">
+            	<div class="halo-block-loader"></div>
+            	<div class="quickCartWrap">
+            		<div class="cart-item cart-itemLeft" id="Cart-Item-Dropdown"></div>
+            		<div class="cart-item cart-itemRight" id="Cart-Total-Dropdown"></div>
+            	</div>
+            </quick-cart-items>
+        </div>
+    </div>
+</div>

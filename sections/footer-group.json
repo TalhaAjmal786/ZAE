@@ -1,0 +1,169 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "newsletter": {
+      "type": "halo-newsletter",
+      "blocks": {
+        "nl_text": {
+          "type": "text",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 12,
+            "newsletter_heading": "Let's get in touch",
+            "padding_top_heading": 0,
+            "padding_bottom_heading": 0,
+            "newsletter_text": "<p>Sign up for our newsletter.</p>"
+          }
+        },
+        "nl_form": {
+          "type": "newsletter",
+          "settings": {
+            "show_newsletter": true,
+            "layout": "1",
+            "padding_top": 0,
+            "padding_bottom": 12,
+            "newsletter_text_2": "",
+            "newsletter_bg": "#FFFFFF",
+            "newsletter_color": "#707070",
+            "newsletter_border": "#E2E2E2",
+            "newsletter_btn_bg": "",
+            "newsletter_btn_color": "#1A1A1A"
+          }
+        },
+        "nl_icon": {
+          "type": "icon",
+          "settings": {
+            "choose_icon": "social-icon",
+            "padding_top": 8,
+            "padding_bottom": 0,
+            "show_social": true,
+            "choose_style_social": "1",
+            "choose_social_align": "left",
+            "social_bg": "#F5F5F5",
+            "social_color": "#707070",
+            "social_bg_hover": "#F5F5F5",
+            "social_color_hover": "#1A1A1A"
+          }
+        }
+      },
+      "block_order": ["nl_text", "nl_form", "nl_icon"],
+      "settings": {
+        "show_newsletter": true,
+        "container": "1770",
+        "padding_top": 48,
+        "padding_bottom": 8,
+        "padding_top_tablet": 40,
+        "padding_bottom_tablet": 8,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 8,
+        "choose_style": "horizontal",
+        "show_border": false,
+        "text_align": "left",
+        "heading_font": "font_2",
+        "heading_font_size": 14,
+        "heading_font_weight": "500",
+        "heading_text_transform": "none",
+        "heading_font_style": "normal",
+        "link_font": "font_1",
+        "link_font_size": 14,
+        "link_font_weight": "400",
+        "link_text_transform": "none",
+        "block_bg": "#F5F5F5",
+        "link_color": "#707070",
+        "heading_color": "#1A1A1A",
+        "show_newsletter_bg_img": false
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "col_company": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our Company",
+            "menu": "our-company-1"
+          }
+        },
+        "col_policies": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our Policies",
+            "menu": "our-policies"
+          }
+        },
+        "col_store": {
+          "type": "text",
+          "settings": {
+            "heading": "Our Store",
+            "subtext": "<p>Whatsapp: +92 000 0000000</p><p>Email: info@zaewardrobe.com</p><p>Customer Service Hours: Monday to Saturday 9:30am to 5:30pm.</p>"
+          }
+        },
+        "footer_bottom": {
+          "type": "footer_bottom",
+          "settings": {
+            "show_footer_bottom": true,
+            "footer_bottom_container": "1770",
+            "footer_bottom_bg": "#F5F5F5",
+            "footer_bottom_color": "#707070",
+            "show_separate_line": true,
+            "separate_line_color": "#E2E2E2",
+            "show_copyright": true,
+            "copyright_link": "",
+            "copyright": "ZAE Wardrobe",
+            "show_payment": true,
+            "payment_type": "custom",
+            "show_payment_visa": true,
+            "show_payment_master": true,
+            "show_payment_maestro": false,
+            "show_payment_american_express": false,
+            "show_payment_apple_pay": false,
+            "show_payment_bitcoin": false,
+            "show_payment_dankort": false,
+            "show_payment_diners_club": false,
+            "show_payment_discover": false,
+            "show_payment_paypal": false,
+            "show_payment_dogecoin": false,
+            "show_payment_dwolla": false,
+            "show_payment_forbrugsforeningen": false,
+            "show_payment_jcb": false,
+            "show_payment_litecoin": false,
+            "show_payment_afterpay": false,
+            "show_payment_google_pay": false,
+            "show_payment_ideal": false,
+            "show_payment_klarna": false,
+            "show_payment_klarna-pay-later": false,
+            "show_payment_shopify_pay": false,
+            "show_payment_sofort": false
+          }
+        }
+      },
+      "block_order": [
+        "col_company",
+        "col_policies",
+        "col_store",
+        "footer_bottom"
+      ],
+      "settings": {
+        "style": "1",
+        "show_footer_middle": true,
+        "footer_middle_container": "1770",
+        "footer_middle_text_align": "left",
+        "heading_font": "font_2",
+        "heading_font_size": 14,
+        "heading_font_weight": "500",
+        "heading_text_transform": "none",
+        "link_font": "font_1",
+        "link_font_size": 14,
+        "link_font_weight": "400",
+        "link_text_transform": "none",
+        "footer_middle_bg": "#F5F5F5",
+        "link_color": "#707070",
+        "heading_color": "#1A1A1A",
+        "link_color_hover": "#1A1A1A",
+        "show_footer_middle_bg_img": false
+      }
+    }
+  },
+  "order": ["newsletter", "footer"]
+}

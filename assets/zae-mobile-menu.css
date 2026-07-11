@@ -1,0 +1,65 @@
+/* ZAE - full-screen mobile menu (COS style) */
+
+@media (max-width: 1024px) {
+    .halo-sidebar.halo-sidebar-menu {
+        max-width: 100% !important;
+        width: 100% !important;
+        left: 0;
+        right: 0;
+    }
+
+    /* Halo parks the close button OUTSIDE the drawer (right: -40px), which
+       falls off-screen once the drawer is full-width. Pull it back inside. */
+    .halo-sidebar.halo-sidebar-menu .halo-sidebar-close,
+    .halo-sidebar.halo-sidebar-menu.halo-sidebar-left .halo-sidebar-close,
+    .halo-sidebar.halo-sidebar-menu.halo-sidebar-right .halo-sidebar-close {
+        right: 0 !important;
+        left: auto !important;
+        top: 0;
+        width: 52px;
+        height: 52px;
+        background-color: transparent;
+        color: #1A1A1A;
+    }
+
+    .halo-sidebar.halo-sidebar-menu .halo-sidebar-close svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .halo-sidebar.halo-sidebar-menu .halo-sidebar-close svg path,
+    .halo-sidebar.halo-sidebar-menu .halo-sidebar-close svg line {
+        stroke: #1A1A1A;
+    }
+
+    /* make room so the first menu row doesn't sit under the close button */
+    .halo-sidebar.halo-sidebar-menu .halo-sidebar-wrapper {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 56px;
+    }
+
+    /* roomier tap targets, quieter dividers */
+    .halo-sidebar-menu [data-navigation-mobile] .menu-lv-item,
+    .halo-sidebar-menu [data-navigation-list-mobile] .menu-lv-item {
+        border-bottom-color: #EDEDED;
+    }
+
+    .halo-sidebar-menu [data-navigation-mobile] .menu-lv-1__action > .text,
+    .halo-sidebar-menu .site-nav-mobile .menu-lv-1__action > .text {
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .halo-sidebar-menu .menu-lv-2__action > .text,
+    .halo-sidebar-menu .menu-lv-3__action > .text {
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: none;
+        color: #707070;
+    }
+}

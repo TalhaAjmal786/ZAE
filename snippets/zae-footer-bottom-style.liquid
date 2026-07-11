@@ -1,0 +1,95 @@
+{% comment %}
+    ZAE footer bottom bar.
+    Renders copyright on the left and payment icons on the right,
+    with padding driven by the block settings so it stays editable
+    from the theme editor (Footer > Footer bottom).
+{% endcomment %}
+
+{%- liquid
+    assign pad_top = block.settings.zae_bottom_padding_top | default: 16
+    assign pad_bottom = block.settings.zae_bottom_padding_bottom | default: 16
+    assign pad_top_mobile = block.settings.zae_bottom_padding_top_mobile | default: 20
+    assign pad_bottom_mobile = block.settings.zae_bottom_padding_bottom_mobile | default: 20
+-%}
+
+<style>
+    .footer-1 .footer__content-bottom {
+        --zae-pad-top: {{ pad_top }}px;
+        --zae-pad-bottom: {{ pad_bottom }}px;
+        padding-top: var(--zae-pad-top);
+        padding-bottom: var(--zae-pad-bottom);
+    }
+
+    .footer-1 .footer-block__bottom {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 24px;
+        padding-top: 0;
+        padding-bottom: 0;
+        text-align: left;
+    }
+
+    .footer-1 .footer-block__bottom .footer__copyright {
+        order: 1;
+        margin: 0;
+        flex: 0 1 auto;
+        text-align: left;
+    }
+
+    .footer-1 .footer-block__bottom .footer__payment {
+        order: 2;
+        margin: 0;
+        flex: 0 1 auto;
+        text-align: right;
+    }
+
+    .footer-1 .footer-block__bottom .footer__payment .list-payment {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0;
+        padding: 0;
+        gap: 8px;
+    }
+
+    .footer-1 .footer-block__bottom .footer__payment .list-payment li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-1 .footer-block__bottom .copyright__content {
+        margin: 0;
+    }
+
+    @media (max-width: 767px) {
+        .footer-1 .footer__content-bottom {
+            padding-top: {{ pad_top_mobile }}px;
+            padding-bottom: {{ pad_bottom_mobile }}px;
+        }
+
+        .footer-1 .footer-block__bottom {
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            text-align: center;
+        }
+
+        .footer-1 .footer-block__bottom .footer__copyright {
+            order: 2;
+            text-align: center;
+        }
+
+        .footer-1 .footer-block__bottom .footer__payment {
+            order: 1;
+            text-align: center;
+        }
+
+        .footer-1 .footer-block__bottom .footer__payment .list-payment {
+            justify-content: center;
+        }
+    }
+</style>

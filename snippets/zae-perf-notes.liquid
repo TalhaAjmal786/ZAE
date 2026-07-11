@@ -1,0 +1,8 @@
+{% comment %}
+  ZAE performance changes log - 10 Jul 2026
+  1. snippets/lazyload.liquid  -> added optional `lazyload` + `priority` params.
+     Old behaviour unchanged. When lazyload=true -> no loading="lazy".
+     When lazyload=true AND priority=true -> adds fetchpriority="high".
+  2. sections/halo-custom-banner.liquid -> above-the-fold hero images now eager.
+  Safe to delete this file.
+{% endcomment %}

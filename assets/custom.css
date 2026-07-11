@@ -1,0 +1,149 @@
+// =============================================================================
+// Halo Custom CSS - Customize The Style For Layout
+// =============================================================================
+
+// =============================================================================
+//
+// IMPORTANT DISCLAIMER
+// Shopify is notifying shop owners about the need to convert scss files to css files.
+// Please use only CSS to style the layout.
+//
+// =============================================================================
+
+/* =========================================================================
+   ZAE: Hide vendor / brand name EVERYWHERE (cards, product page, quick view)
+   ========================================================================= */
+.product-vendor,
+.productView-vendor,
+.card-vendor,
+.card__vendor,
+.product-card__vendor,
+.grid-product__vendor,
+.product-item__vendor,
+.productList-vendor,
+.productGrid-vendor,
+.vendor,
+.product-single__vendor,
+.product__vendor,
+.prd-vendor,
+.pro_vendor,
+.h-product-vendor {
+  display: none !important;
+}
+
+/* Catch-all: any wrapper that holds a link to the vendors collection */
+[class*="vendor"]:has(a[href*="/collections/vendors"]),
+a[href*="/collections/vendors"] {
+  display: none !important;
+}
+
+/* Hide the whole vendor info row inside the quick-view / product page
+   (covers the "Vendor:" label line even when empty) */
+.productView-info .productView-vendor,
+.productView-info li:has(a[href*="/collections/vendors"]) {
+  display: none !important;
+}
+
+/* =========================================================================
+   ZAE: Hide review, sold-count and live-viewing on product page & quick view
+   ========================================================================= */
+.productView-rating,
+.halo-productReview,
+.productView-soldProduct,
+.productView-sold,
+.sold-in-last-product,
+sold-in-last-product,
+.productView-ViewingProduct,
+.productView-promotionItem {
+  display: none !important;
+}
+
+/* =========================================================================
+   ZAE: Wishlist + quick-view icons — bottom-right
+   Desktop: hover slide-in from right | Mobile: always visible
+   Normal: white bg + black icon | Hover: black bg + white icon
+   ========================================================================= */
+.card-product__wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-product__group {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  left: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  z-index: 3;
+}
+
+.card-product__group .wishlist-icon,
+.card-product__group .quickview-icon,
+.card-product__group .card-product__group-item > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #202020;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.card-product__group .wishlist-icon:hover,
+.card-product__group .quickview-icon:hover,
+.card-product__group .card-product__group-item > a:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.card-product__group .wishlist-icon svg,
+.card-product__group .quickview-icon svg,
+.card-product__group .card-product__group-item > a svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* Desktop (>= 768px): hover slide-in from the right */
+@media (min-width: 768px) {
+  .card-product__group {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(30px);
+    transition: opacity .35s ease, transform .35s ease, visibility .35s ease;
+  }
+  .card-product:hover .card-product__group,
+  .product-item:hover .card-product__group,
+  .card-product__wrapper:hover .card-product__group {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile (< 768px): icons always visible (no hover on touch) */
+@media (max-width: 767px) {
+  .card-product__group {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
+
+/* =========================================================================
+   ZAE: Hide ADD TO BAG button on product cards (mobile + desktop)
+   ========================================================================= */
+.card-action,
+.card-information .card-action,
+.product-item .card-action {
+  display: none !important;
+}

@@ -1,0 +1,92 @@
+{% comment %}
+    ZAE product page extras. Loaded only on product pages.
+    1. Injects the estimated dispatch date box right under the price.
+    2. Applies the screenshot look: sharp/square size buttons + serif title.
+    Pure add-on; does not modify the theme's own product markup.
+{% endcomment %}
+
+{%- if request.page_type == 'product' -%}
+
+<template id="zae-dispatch-template">
+    {% render 'zae-dispatch-date' %}
+</template>
+
+<style>
+    /* ===== Dispatch box ===== */
+    .zae-dispatch { margin: 4px 0 18px; }
+    .zae-dispatch__inner {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #f5f4f2;
+        color: #1a1a1a;
+        border-radius: 6px;
+        padding: 14px 18px;
+        font-size: 15px;
+        line-height: 1.4;
+    }
+    .zae-dispatch__icon { display: inline-flex; color: #1a1a1a; flex-shrink: 0; }
+    .zae-dispatch__text strong { font-weight: 600; }
+
+    /* ===== Screenshot look: product title (serif, bold) ===== */
+    .productView .productView-title,
+    .productView-title {
+        font-family: Georgia, 'Times New Roman', 'Playfair Display', serif !important;
+        font-weight: 700 !important;
+        letter-spacing: 0 !important;
+    }
+
+    /* ===== Screenshot look: square / sharp size buttons ===== */
+    .productView .product-form__input .swatch-element label,
+    .productView .product-form__input input[type='radio'] + label,
+    .productView-options .swatch label,
+    .productView-options .form-field label.swatch-label,
+    .productView .swatch-element label {
+        border-radius: 0 !important;
+        border: 1px solid #d9d9d9 !important;
+        min-width: 54px;
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        transition: all .15s ease;
+    }
+    .productView .swatch-element input:checked + label,
+    .productView .product-form__input input[type='radio']:checked + label,
+    .productView-options .swatch label.selected,
+    .productView-options .swatch input:checked + label {
+        background: #1a1a1a !important;
+        color: #ffffff !important;
+        border-color: #1a1a1a !important;
+    }
+</style>
+
+<script>
+(function () {
+    function insertDispatch() {
+        var tpl = document.getElementById('zae-dispatch-template');
+        if (!tpl) return;
+        if (document.querySelector('.zae-dispatch')) return; // already inserted
+
+        // Find the product price block on the page.
+        var price = document.querySelector('.productView-price');
+        if (!price) return;
+
+        var node = tpl.content ? tpl.content.cloneNode(true) : null;
+        if (!node) return;
+        price.parentNode.insertBefore(node, price.nextSibling);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', insertDispatch);
+    } else {
+        insertDispatch();
+    }
+    // Re-run if theme swaps the product info (e.g. variant / quick view).
+    document.addEventListener('shopify:section:load', insertDispatch);
+})();
+</script>
+
+{%- endif -%}

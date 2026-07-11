@@ -1,0 +1,102 @@
+/* ZAE - product card image slider (hover arrows + dots) */
+
+.card-media.zae-slider > img {
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+.card-media.zae-slider > img.zae-active {
+    opacity: 1;
+}
+.card-media.zae-slider > img + img {
+    opacity: 0;
+}
+.card-media.zae-slider > img + img.zae-active {
+    opacity: 1;
+}
+.card-media.zae-slider.media--hover-effect > img + img {
+    opacity: 0;
+}
+.card-media.zae-slider.media--hover-effect > img + img.zae-active {
+    opacity: 1;
+}
+.card-media.zae-slider.media--hover-effect:hover > img:first-child {
+    opacity: 0;
+}
+.card-media.zae-slider.media--hover-effect:hover > img:first-child.zae-active {
+    opacity: 1;
+}
+
+.zae-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .85);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .25s ease, background .2s ease;
+    padding: 0;
+    color: #1a1a1a;
+}
+.zae-nav:hover {
+    background: #fff;
+}
+.zae-nav--prev { left: 10px; }
+.zae-nav--next { right: 10px; }
+
+.card-media.zae-slider:hover .zae-nav {
+    opacity: 1;
+}
+
+.zae-nav svg {
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+}
+
+.zae-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity .25s ease;
+    pointer-events: none;
+}
+.card-media.zae-slider:hover .zae-dots {
+    opacity: 1;
+}
+.zae-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .25);
+    transition: background .2s ease;
+}
+.zae-dot.zae-active {
+    background: #1a1a1a;
+}
+
+@media (hover: none) {
+    .card-media.zae-slider .zae-nav,
+    .card-media.zae-slider .zae-dots {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .zae-nav { width: 28px; height: 28px; }
+    .zae-nav--prev { left: 6px; }
+    .zae-nav--next { right: 6px; }
+}
